@@ -24,7 +24,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['SYSTEM_IP_ADDRESS:8080'] # -targets: ['SYSTEM_IP_ADDRESS':8080]
-
+# Refer :: https://medium.com/@contactkumaramit9139/monitoring-spring-boot-applications-with-prometheus-and-grafana-21445260dad4
 # Note :: prometheus url in grafana is :: http://SYSTEM_IP_ADDRESS:9090 and also in browser's address bar .
 # after that go to dashboard and you will see ::
 #  Prometheus Stats
