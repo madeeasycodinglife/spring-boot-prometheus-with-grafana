@@ -1,0 +1,40 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+# - "first_rules.yml"
+# - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+
+  - job_name: 'spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['SYSTEM_IP_ADDRESS:8080'] # -targets: ['SYSTEM_IP_ADDRESS':8080]
+
+# Note :: prometheus url in grafana is :: http://SYSTEM_IP_ADDRESS:9090 and also in browser's address bar .
+# after that go to dashboard and you will see ::
+#  Prometheus Stats
+#  Prometheus 2.0 Stats
+#  Grafana metrics
+# and select 3 of the above and see what happens .
+# open cmd > C:\Users\<name>>ipconfig
+# Ethernet adapter vEthernet (WSL):
+#  Connection-specific DNS Suffix  . :
+#  Link-local IPv6 Address . . . . . : fe80::2075:2519:11f8:4639%44
+#  IPv4 Address. . . . . . . . . . . : 'SYSTEM_IP_ADDRESS'
+#  Subnet Mask . . . . . . . . . . . : 255.255.240.0
+#  Default Gateway . . . . . . . . . :
